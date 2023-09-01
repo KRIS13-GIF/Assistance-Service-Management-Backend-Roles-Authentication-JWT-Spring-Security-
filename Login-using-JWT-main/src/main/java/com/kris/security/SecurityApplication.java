@@ -7,8 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import static com.kris.security.user.Role.ADMIN;
-import static com.kris.security.user.Role.MANAGER;
+import static com.kris.security.user.Role.*;
 
 @SpringBootApplication
 public class SecurityApplication {
@@ -34,13 +33,23 @@ public class SecurityApplication {
             System.out.println("Admin token: " + service.register(admin).getAccessToken());
 
             var manager = RegisterRequest.builder()
-                    .firstname("Admin")
-                    .lastname("Admin")
+                    .firstname("Manager")
+                    .lastname("Manager")
                     .email("manager@mail.com")
                     .password("password")
                     .role(MANAGER)
                     .build();
             System.out.println("Manager token: " + service.register(manager).getAccessToken());
+
+            var user = RegisterRequest.builder()
+                    .firstname("User")
+                    .lastname("User")
+                    .email("user@gmail.com")
+                    .password("password")
+                    .role(USER)
+                    .build();
+            System.out.println("User token: " + service.register(user).getAccessToken());
+
 
         };
     }
