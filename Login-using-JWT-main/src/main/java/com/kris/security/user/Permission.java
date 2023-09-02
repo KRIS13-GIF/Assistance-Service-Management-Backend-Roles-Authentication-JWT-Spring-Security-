@@ -6,13 +6,27 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum Permission {
 
-    ADMIN_READ("admin:read"),
+    USER_CREATE_PRODUCT("user:create"),
 
-    ADMIN_CREATE("admin:create"),
+    USER_CONSULT("user:consult"),
 
-    MANAGER_READ("management:read"),
+    USER_COLLECT("user:collect"),
 
-    MANAGER_CREATE("management:create"),
+    //create order; repair sheet after accept
+    ACCEPTANCE_CREATE("acceptance:create"),
+
+
+    ACCEPTANCE_INFORM("acceptance:inform"),
+
+    TECHNICIAN_CREATE_ORDER("technician:order"),
+
+    TECHNICIAN_REPAIR("technician:repair"),
+
+    TECHNICIAN_NOT_REPAIR("technician:repair"),
+
+    TECHNICIAN_PUT_FINISH("technician:finish")
+
+
 
     ;
 

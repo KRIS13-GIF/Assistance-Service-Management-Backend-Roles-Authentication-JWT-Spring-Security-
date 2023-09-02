@@ -13,21 +13,32 @@ import static com.kris.security.user.Permission.*;
 
 @RequiredArgsConstructor
 public enum Role {
-    USER(Collections.emptySet()),
-    ADMIN(
+    USER(
             Set.of(
-                    ADMIN_READ,
-                    ADMIN_CREATE
+
+                    USER_CREATE_PRODUCT,
+                    USER_CONSULT,
+                    USER_COLLECT
 
             )
     ),
-
-    MANAGER(
-
+    ACCEPTANCE(
             Set.of(
 
-                    MANAGER_READ,
-                    MANAGER_CREATE
+                    ACCEPTANCE_CREATE,
+                    ACCEPTANCE_INFORM
+            )
+    ),
+
+    TECHNICIAN(
+
+            Set.of(
+                    TECHNICIAN_CREATE_ORDER,
+                    TECHNICIAN_REPAIR,
+                    TECHNICIAN_NOT_REPAIR,
+                    TECHNICIAN_PUT_FINISH
+
+
             )
     )
     ;

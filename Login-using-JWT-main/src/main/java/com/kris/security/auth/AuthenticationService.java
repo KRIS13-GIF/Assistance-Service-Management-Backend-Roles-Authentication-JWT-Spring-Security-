@@ -1,9 +1,8 @@
 package com.kris.security.auth;
 
 import com.kris.security.config.JwtService;
-import com.kris.security.user.Role;
 import com.kris.security.user.User;
-import com.kris.security.user.UserRepository;
+import com.kris.security.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -39,6 +38,10 @@ public class AuthenticationService {
                 .accessToken(jwtToken)
                 .build();
     }
+
+
+
+
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         // the username and password are correct

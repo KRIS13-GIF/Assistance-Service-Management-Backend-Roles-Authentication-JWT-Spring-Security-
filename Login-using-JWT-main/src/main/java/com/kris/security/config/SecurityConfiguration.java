@@ -10,15 +10,14 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static com.kris.security.user.Permission.*;
-import static com.kris.security.user.Role.ADMIN;
-import static com.kris.security.user.Role.MANAGER;
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
+import static com.kris.security.user.Role.*;
+import static org.springframework.http.HttpMethod.*;
 
 @Configuration
 @EnableWebSecurity
@@ -33,27 +32,26 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 
 
-        http.csrf(csrf->csrf.disable())
+        http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth->auth.requestMatchers("/api/v1/auth/**")
                         .permitAll()
 
 
                         //for the user
+                        .requestMatchers("/api/v1/user/**").hasRole(USER.name())
+                        .requestMatchers(POST,"/api/v1/user/create/**").hasAnyAuthority(USER_CREATE_PRODUCT.name())
+                        .requestMatchers(PUT,"/api/v1/user/consult/**").hasAnyAuthority(USER_CONSULT.name())
 
+                        // for the acceptance
+                        .requestMatchers("/api/v1/acceptance/**").hasRole(ACCEPTANCE.name())
+                        .requestMatchers(POST,"/api/v1/acceptance/product/**").hasAnyAuthority(ACCEPTANCE_CREATE.name())
 
-                        // for the management
-                        .requestMatchers("/api/v1/management/**").hasAnyRole(ADMIN.name(), MANAGER.name())
-
-                        .requestMatchers(GET,"/api/v1/management/**").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name())
-                        .requestMatchers(POST,"/api/v1/management/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
-
-
-                        // for the admin
-                        .requestMatchers("/api/v1/admin/**").hasRole(ADMIN.name())
-                        .requestMatchers(GET,"/api/v1/admin/**").hasAnyAuthority(ADMIN_READ.name())
-                        .requestMatchers(POST,"/api/v1/admin/**").hasAnyAuthority(ADMIN_CREATE.name())
-
-
+                        // for the technician
+                        .requestMatchers("/api/v1/technician/**").hasRole(TECHNICIAN.name())
+                        .requestMatchers(POST,"/api/v1/technician/createOrder/**").hasAnyAuthority(TECHNICIAN_CREATE_ORDER.name())
+                        .requestMatchers(PUT,"/api/v1/technician/repair/**").hasAnyAuthority(TECHNICIAN_REPAIR.name())
+                        .requestMatchers(PUT,"/api/v1/technician/no-repair/**").hasAnyAuthority(TECHNICIAN_NOT_REPAIR.name())
+                        .requestMatchers(POST,"/api/v1/technician/finish/**").hasAnyAuthority(TECHNICIAN_PUT_FINISH.name())
 
                         .anyRequest().authenticated()
 

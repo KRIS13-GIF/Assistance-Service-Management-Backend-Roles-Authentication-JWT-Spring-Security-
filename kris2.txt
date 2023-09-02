@@ -1,0 +1,17 @@
+Product Information:
+Serial Number: Kris12
+Brand: samsung
+Template: samsung note 10+
+Description: bad phone
+Date Purchase: 2023-09-02
+Expiry Date: 2023-09-05
+Notes: nice
+Customer Name: User
+Full Address: Durres
+Telephone Number: 0673168487
+Email: user@gmail.com
+Fiscal Code: 1254tr
+VAT Number: 12365
+PEC: null
+Accept: true
+File NO: 1
