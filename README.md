@@ -55,4 +55,5 @@ With regard to reporting, extract the data relating to repairs:
 
 
 
-![schema2](https://github.com/KRIS13-GIF/Role-Based-Authentication-JWT-And-Spring-Security/assets/71281629/84fd4a8c-988c-4438-b3eb-8e58e88aca31)
+![schema2](https://github.com/KRIS13-GIF/Role-Based-Authentication-JWT-And-Spring-Security/assets/71281629/711037dc-77d6-4b26-ac1f-89249c2fe9d4)
+
